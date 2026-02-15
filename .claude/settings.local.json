@@ -5,7 +5,15 @@
       "Bash(pnpm create:*)",
       "Bash(pnpm install:*)",
       "Bash(npx prisma generate:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(npx vite build:*)",
+      "Bash(timeout 5 npx tsx:*)",
+      "Bash(gh auth status:*)",
+      "Bash(pg_isready:*)",
+      "Bash(brew services:*)",
+      "Bash(docker --version:*)",
+      "Bash(docker compose:*)",
+      "Bash(npx prisma migrate:*)"
     ]
   }
 }
