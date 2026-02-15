@@ -1,9 +1,14 @@
 import { Router } from "express";
 import { createStorySchema, updateStorySchema, SocketEvents } from "@planning-poker/shared";
+import type { Story } from "@planning-poker/shared";
 import { validate } from "../middleware/validate";
 import { authenticate, type AuthRequest } from "../middleware/auth";
 import * as storyService from "../services/storyService";
 import { getIO } from "../socket";
+
+function serializeStory(s: { createdAt: Date; updatedAt: Date; [k: string]: unknown }): Story {
+  return { ...s, createdAt: s.createdAt.toISOString(), updatedAt: s.updatedAt.toISOString() } as Story;
+}
 
 export const storyRouter = Router();
 
@@ -15,7 +20,8 @@ storyRouter.post(
   async (req: AuthRequest, res, next) => {
     try {
       const roomId = req.params.roomId as string;
-      const story = await storyService.createStory(roomId, req.userId!, req.body);
+      const raw = await storyService.createStory(roomId, req.userId!, req.body);
+      const story = serializeStory(raw);
 
       getIO().to(roomId).emit(SocketEvents.STORY_ADDED, { story });
 
@@ -44,12 +50,13 @@ storyRouter.patch(
   async (req: AuthRequest, res, next) => {
     try {
       const roomId = req.params.roomId as string;
-      const story = await storyService.updateStory(
+      const raw = await storyService.updateStory(
         roomId,
         req.params.storyId as string,
         req.userId!,
         req.body
       );
+      const story = serializeStory(raw);
 
       getIO().to(roomId).emit(SocketEvents.STORY_UPDATED, { story });
 
