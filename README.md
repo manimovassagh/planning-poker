@@ -6,6 +6,9 @@
 
 Planning Poker is a full-stack workspace for running agile estimation sessions. It bundles an Express + Prisma API, a Vite/React front-end, and a `@planning-poker/shared` package that centralizes socket contracts and validation schemas so both sides stay in sync.
 
+## About
+Planning Poker re-creates the flow of real-world estimation ceremonies in a browser: product managers spin up secure rooms, invite the squad, and everyone casts votes simultaneously so bias stays low. The facilitator can replay rounds, lock in final estimates, and export analytics for retros without juggling spreadsheets or plugins. Under the hood, a shared TypeScript contract keeps the API, Socket.IO events, and rich React UI perfectly aligned, so the experience feels instant and trustworthy whether you are hosting sprint planning, backlog refinement, or discovery spikes.
+
 ## Highlights
 - **Hidden votes & facilitation tools** – All votes stay private until the facilitator reveals the round, preventing anchoring bias.
 - **Real-time collaboration** – Socket.IO propagates joins, vote submissions, and results instantly to connected participants.
