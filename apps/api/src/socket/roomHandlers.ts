@@ -55,4 +55,21 @@ export function setupRoomHandlers(
       userId: socket.userId!,
     });
   });
+
+  socket.on(SocketEvents.ROOM_END_SESSION, async ({ roomId }) => {
+    try {
+      const room = await prisma.room.findUnique({ where: { id: roomId } });
+      if (!room || room.ownerId !== socket.userId) return;
+      if (room.status !== "active") return;
+
+      await prisma.room.update({
+        where: { id: roomId },
+        data: { status: "completed" },
+      });
+
+      io.to(roomId).emit(SocketEvents.ROOM_SESSION_ENDED, { roomId });
+    } catch (err) {
+      console.error("Error ending session:", err);
+    }
+  });
 }
