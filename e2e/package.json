@@ -1,12 +1,12 @@
 {
   "name": "@planning-poker/e2e",
   "private": true,
-  "version": "0.0.1",
+  "version": "3.0.0",
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",
     "test:debug": "playwright test --debug",
-    "test:prod": "BASE_URL=https://planningpoker-two.vercel.app playwright test tests/production-smoke.spec.ts"
+    "test:prod": "BASE_URL=https://planning-poker.up.railway.app playwright test tests/production-smoke.spec.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2"
