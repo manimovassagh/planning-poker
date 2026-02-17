@@ -9,6 +9,9 @@ import { errorHandler } from "./middleware/errorHandler";
 
 const app = express();
 
+// Trust Railway's reverse proxy (required for express-rate-limit + X-Forwarded-For)
+app.set("trust proxy", 1);
+
 // CORS
 app.use(
   cors({
