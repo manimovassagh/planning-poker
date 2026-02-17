@@ -6,21 +6,34 @@ import {
   Card,
   CardContent,
 } from "@/components/ui/card";
-import { Users, FileText } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Users, FileText, AlertCircle } from "lucide-react";
 
 type HistoryRoom = Room & { _count?: { participants: number; stories: number } };
 
 export function HistoryPage() {
   const [rooms, setRooms] = useState<HistoryRoom[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     api
       .get("/analytics/user/history")
       .then(({ data }) => setRooms(data.rooms))
+      .catch(() => setError("Failed to load session history."))
       .finally(() => setLoading(false));
   }, []);
+
+  const handleRetry = () => {
+    setLoading(true);
+    setError(null);
+    api
+      .get("/analytics/user/history")
+      .then(({ data }) => setRooms(data.rooms))
+      .catch(() => setError("Failed to load session history."))
+      .finally(() => setLoading(false));
+  };
 
   return (
     <div className="mx-auto max-w-4xl p-4 space-y-6">
@@ -28,6 +41,14 @@ export function HistoryPage() {
 
       {loading ? (
         <p className="text-muted-foreground">Loading...</p>
+      ) : error ? (
+        <div className="flex flex-col items-center gap-3 py-8 text-muted-foreground">
+          <AlertCircle className="h-8 w-8 text-destructive" />
+          <p>{error}</p>
+          <Button variant="outline" onClick={handleRetry}>
+            Retry
+          </Button>
+        </div>
       ) : rooms.length === 0 ? (
         <p className="text-muted-foreground">
           No completed sessions yet.
