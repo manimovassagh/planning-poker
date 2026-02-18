@@ -173,7 +173,7 @@ jobs:
         run: pnpm --filter @planning-poker/e2e test
 
       - name: Upload test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: failure()
         with:
           name: playwright-report
@@ -322,7 +322,7 @@ jobs:
         run: cd e2e && BASE_URL=https://planning-poker.up.railway.app pnpm exec playwright test tests/production-smoke.spec.ts
 
       - name: Upload smoke test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         if: failure()
         with:
           name: production-smoke-report
