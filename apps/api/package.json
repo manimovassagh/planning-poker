@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@planning-poker/shared": "workspace:*",
+    "@prisma/adapter-pg": "^7.4.0",
     "@prisma/client": "^7.4.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
