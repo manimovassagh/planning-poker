@@ -42,8 +42,9 @@ COPY apps/api/package.json apps/api/
 # Install all deps (need prisma CLI for generate + migrate)
 RUN pnpm install --frozen-lockfile
 
-# Copy prisma schema + migrations
+# Copy prisma schema + migrations + config (Prisma 7 requires prisma.config.ts)
 COPY --from=builder /app/apps/api/prisma/ apps/api/prisma/
+COPY --from=builder /app/apps/api/prisma.config.ts apps/api/prisma.config.ts
 
 # Generate Prisma client with correct version from lockfile
 RUN pnpm --filter @planning-poker/api exec prisma generate

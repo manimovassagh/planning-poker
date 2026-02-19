@@ -22,7 +22,7 @@ jobs:
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
 
       - name: Install dependencies
@@ -41,7 +41,7 @@ jobs:
             apps/*/node_modules
             packages/*/node_modules
             e2e/node_modules
-            apps/api/node_modules/.prisma
+            apps/api/src/generated
             packages/*/dist
           key: workspace-${{ github.sha }}
 
@@ -57,7 +57,7 @@ jobs:
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22
 
       - uses: actions/cache/restore@v5
         with:
@@ -66,7 +66,7 @@ jobs:
             apps/*/node_modules
             packages/*/node_modules
             e2e/node_modules
-            apps/api/node_modules/.prisma
+            apps/api/src/generated
             packages/*/dist
           key: workspace-${{ github.sha }}
 
@@ -91,7 +91,7 @@ jobs:
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22
 
       - uses: actions/cache/restore@v5
         with:
@@ -100,7 +100,7 @@ jobs:
             apps/*/node_modules
             packages/*/node_modules
             e2e/node_modules
-            apps/api/node_modules/.prisma
+            apps/api/src/generated
             packages/*/dist
           key: workspace-${{ github.sha }}
 
@@ -147,7 +147,7 @@ jobs:
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22
 
       - uses: actions/cache/restore@v5
         with:
@@ -156,7 +156,7 @@ jobs:
             apps/*/node_modules
             packages/*/node_modules
             e2e/node_modules
-            apps/api/node_modules/.prisma
+            apps/api/src/generated
             packages/*/dist
           key: workspace-${{ github.sha }}
 
@@ -304,7 +304,7 @@ jobs:
       - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install dependencies
         run: cd e2e && pnpm install --frozen-lockfile
