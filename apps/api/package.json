@@ -20,8 +20,8 @@
   },
   "dependencies": {
     "@planning-poker/shared": "workspace:*",
-    "@prisma/adapter-pg": "^7.4.0",
-    "@prisma/client": "^7.4.0",
+    "@prisma/adapter-pg": "^7.4.2",
+    "@prisma/client": "^7.4.2",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^5.2.1",
@@ -35,8 +35,8 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/jsonwebtoken": "^9.0.7",
-    "@types/node": "^25.2.3",
-    "prisma": "^7.4.0",
+    "@types/node": "^25.3.3",
+    "prisma": "^7.4.2",
     "tsx": "^4.19.0",
     "typescript": "^5.7.0",
     "vitest": "^4.0.18"
