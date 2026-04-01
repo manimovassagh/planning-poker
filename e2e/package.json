@@ -9,6 +9,6 @@
     "test:prod": "BASE_URL=https://planning-poker.up.railway.app playwright test tests/production-smoke.spec.ts"
   },
   "devDependencies": {
-    "@playwright/test": "^1.58.2"
+    "@playwright/test": "^1.59.0"
   }
 }
