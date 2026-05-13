@@ -1,5 +1,5 @@
 # ── Stage 1: Build ──────────────────────────────────────────────
-FROM node:25-alpine AS builder
+FROM node:26-alpine AS builder
 RUN npm install -g pnpm@9.15.0
 
 WORKDIR /app
@@ -27,7 +27,7 @@ RUN pnpm --filter @planning-poker/api build
 RUN sed -i 's|"./src/index.ts"|"./dist/index.js"|g' packages/shared/package.json
 
 # ── Stage 2: Production ────────────────────────────────────────
-FROM node:25-alpine AS runner
+FROM node:26-alpine AS runner
 RUN npm install -g pnpm@9.15.0
 
 WORKDIR /app
